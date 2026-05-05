@@ -4,7 +4,7 @@ import Error from "../components/Error"
 import H2 from "../components/H2"
 import InputComponent from "../components/InputComponent"
 import '../index.css'
-import { useNavigate } from "react-router-dom"
+import { redirect, useNavigate } from "react-router-dom"
 
 export default function Register() {
 	const [userName, setUsername] = useState("")
@@ -41,8 +41,9 @@ export default function Register() {
 			const data = await res.json();
 
 			if (res.ok) {
-				setIsSuccess(true)
-				setMessage("User registered successfully")
+				setMessage("User Registered Successfully!");
+				localStorage.setItem("user", JSON.stringify(data.data.user));
+				navigate("/dashboard");	
 			} else {
 				setIsSuccess(false)
 				setMessage(data.message || "Something went wrong")

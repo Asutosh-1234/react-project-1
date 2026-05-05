@@ -1,50 +1,34 @@
-import React from "react"
-
 export default function Logo({ avatarUrl, username, role }) {
-  return (
-    <div className="flex items-center gap-3">
-      <img
-        src={avatarUrl}
-        alt={username}
-        className="w-16 h-16 rounded-full object-cover border-4 border-blue-500 shadow-lg hover:scale-105 transition-transform duration-300"
-      />
+    const initials = username
+        ? username.slice(0, 2).toUpperCase()
+        : "??"
 
-      <div>
-        <h2 className="text-lg font-bold text-gray-800">
-          {username}
-        </h2>
-        <p className="text-sm text-gray-500">{role}</p>
-      </div>
-    </div>
-  );
+    return (
+        <nav className="flex items-center justify-between px-8 py-4 border-b border-gray-800">
+            <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded bg-indigo-500 flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">A</span>
+                </div>
+                <span className="text-white font-semibold text-sm tracking-wide">AppName</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+                <div className="text-right">
+                    <p className="text-white text-sm font-medium leading-none">{username}</p>
+                    <p className="text-gray-400 text-xs mt-0.5">{role}</p>
+                </div>
+                {avatarUrl ? (
+                    <img
+                        src={avatarUrl}
+                        alt={username}
+                        className="w-9 h-9 rounded-full object-cover ring-2 ring-indigo-500"
+                    />
+                ) : (
+                    <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center ring-2 ring-indigo-400">
+                        <span className="text-white text-sm font-semibold">{initials}</span>
+                    </div>
+                )}
+            </div>
+        </nav>
+    )
 }
-
-
-/* 
-{
-  "statusCode": 200,
-  "data": {
-    "user": {
-      "_id": "69f98ecb37670c6a4e3897af",
-      "avatar": {
-        "url": "https://via.placeholder.com/200x200.png",
-        "localPath": "",
-        "_id": "69f98ecb37670c6a4e3897ae"
-      },
-      "username": "doejohn",
-      "email": "user.email@domain.com",
-      "role": "ADMIN",
-      "loginType": "EMAIL_PASSWORD",
-      "isEmailVerified": false,
-      "createdAt": "2026-05-05T06:31:39.887Z",
-      "updatedAt": "2026-05-05T06:57:56.289Z",
-      "__v": 0
-    },
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWY5OGVjYjM3NjcwYzZhNGUzODk3YWYiLCJlbWFpbCI6InVzZXIuZW1haWxAZG9tYWluLmNvbSIsInVzZXJuYW1lIjoiZG9lam9obiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3Nzk2NDI3NiwiZXhwIjoxNzc4MDUwNjc2fQ.usC0dYfm_Zsbu8dxNxFqQ6BmhV00n9iRmXwzeEz2yfw",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWY5OGVjYjM3NjcwYzZhNGUzODk3YWYiLCJpYXQiOjE3Nzc5NjQyNzYsImV4cCI6MTc3ODgyODI3Nn0.h5IMYQrSEn1ZzIB7yweiMkA0PJTL9ThD0M7t2i4yWA8"
-  },
-  "message": "User logged in successfully",
-  "success": true
-}
-
-*/
