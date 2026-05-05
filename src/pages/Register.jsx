@@ -4,16 +4,22 @@ import Error from "../components/Error"
 import H2 from "../components/H2"
 import InputComponent from "../components/InputComponent"
 import '../index.css'
+import { useNavigate } from "react-router-dom"
 
 export default function Register() {
-	const [name, setName] = useState("")
+	const [userName, setUsername] = useState("")
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [message, setMessage] = useState("")
 	const [isSuccess, setIsSuccess] = useState(false)
+	const navigate = useNavigate();
+
+	function login() {
+		navigate("/login")
+	}
 
 	async function registerUser() {
-		if (!name || !email || !password) {
+		if (!userName || !email || !password) {
 			setIsSuccess(false)
 			setMessage("Please fill in all fields")
 			return;
@@ -22,7 +28,7 @@ export default function Register() {
 		const user = {
 			email,
 			password,
-			username: name.toLowerCase().replace(" ", "")
+			username: userName.toLowerCase().replace(" ", "")
 		};
 
 		try {
@@ -60,12 +66,12 @@ export default function Register() {
 
 					<InputComponent
 						id="name"
-						value={name}
+						value={userName}
 						placeholder="Enter your name"
-						onChange={(e) => setName(e.target.value)}
+						onChange={(e) => setUsername(e.target.value)}
 						type="text"
 						className="focus:ring-2 focus:ring-blue-500"
-						label="Name"
+						label="User Name"
 					/>
 
 					<InputComponent
@@ -105,7 +111,7 @@ export default function Register() {
 				)}
 
 				<p className="text-sm text-center text-gray-500">
-					Already have an account? <span className="text-blue-600 cursor-pointer hover:underline">Login</span>
+					Already have an account? <span className="text-blue-600 cursor-pointer hover:underline" onClick={() => login()}>Login</span>
 				</p>
 
 			</div>
