@@ -1,16 +1,71 @@
-# React + Vite
+# React Authentication Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and responsive React web application that demonstrates user registration, login, and a dashboard view. Built with Vite, React Router, and Tailwind CSS, this project integrates with the FreeAPI to handle user authentication.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **User Registration**: Create a new account with a username, email, and password.
+- **User Login**: Securely log into an existing account.
+- **Dashboard**: A page displaying the authenticated user's profile details, role, joined date, and account status.
+- **State Persistence**: Maintains user session using `localStorage`.
+- **Responsive Design**: Styled with Tailwind CSS, providing a modern and accessible UI across all devices.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, React Router v7
+- **Styling**: Tailwind CSS v4
+- **Build Tool**: Vite
+- **API**: [FreeAPI](https://freeapi.app/) (User Authentication Endpoints)
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/pages/`: Contains the main views:
+  - `Register.jsx`: Handles user sign-up.
+  - `Login.jsx`: Handles user authentication.
+  - `Dashboard.jsx`: Displays user profile and stats after login.
+- `src/components/`: Reusable UI components (Buttons, Inputs, Loaders, StatCards, etc.).
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js installed on your machine.
+
+### Installation
+
+1. Clone the repository and navigate into the project directory.
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+To start the development server, run:
+
+```bash
+npm run dev
+```
+
+The application will typically run at `http://localhost:5173`.
+
+### Building for Production
+
+To build the project for production:
+
+```bash
+npm run build
+```
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## How It Works
+
+- The application uses `react-router-dom` to navigate between the Register (`/`), Login (`/login`), and Dashboard (`/dashboard`) routes.
+- Forms capture user input, which is then sent via `fetch` to `api.freeapi.app/api/v1/users/register` or `login`.
+- Upon successful authentication, the user's data is stored in `localStorage` to persist the session and passed to the Dashboard via React Router's state.
